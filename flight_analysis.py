@@ -188,9 +188,7 @@ def main():
         + flights['CRS_DEP_TIME'].astype(str)
     )
 
-    # --------------------------------------------------
     # 9. Keep variables needed for the project
-    # --------------------------------------------------
     cleaned_flights = flights[[
         'flight_id',
         'YEAR',
@@ -210,10 +208,8 @@ def main():
         'DISTANCE'
     ]]
 
-    # --------------------------------------------------
     # 10. Rename columns to team snake_case format
     # Project extension
-    # --------------------------------------------------
     cleaned_flights = cleaned_flights.rename(columns={
         'YEAR': 'year',
         'MONTH': 'month',
@@ -229,9 +225,7 @@ def main():
         'DISTANCE': 'distance'
     })
 
-    # --------------------------------------------------
     # 11. Final checks
-    # --------------------------------------------------
     print('Duplicate flight IDs:')
     print(cleaned_flights['flight_id'].duplicated().sum())
 
@@ -247,9 +241,7 @@ def main():
     print('Final JFK flights:')
     print((cleaned_flights['origin'] == 'JFK').sum())
 
-    # --------------------------------------------------
     # 12. Save cleaned 2023 flight dataset
-    # --------------------------------------------------
     cleaned_flights.to_csv(
         'data/clean_flights_2023.csv',
         index=False
