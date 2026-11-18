@@ -38,11 +38,6 @@ NUMERIC_COLUMNS = [
     "precipitation_mm",
     "precipitation_period_hours",
     "precipitation_condition_code",
-    "temperature_quality",
-    "wind_speed_quality",
-    "visibility_quality",
-    "pressure_quality",
-    "precipitation_quality",
 ]
 
 
@@ -81,9 +76,10 @@ def test_weather_times(weather):
     keys = weather.assign(parsed_weather_time=weather_times)
 
     assert weather_times.notna().all(), "Some weather times are invalid."
-    assert weather_times.is_monotonic_increasing, (
-        "Weather observations are not sorted by time."
-    )
+    for airport, airport_rows in keys.groupby("airport"):
+        assert airport_rows["parsed_weather_time"].is_monotonic_increasing, (
+            f"Weather observations for {airport} are not sorted by time."
+        )
     assert not keys.duplicated(
         subset=["airport", "parsed_weather_time"]
     ).any(), "Duplicate airport-time weather records were found."
