@@ -1,0 +1,7 @@
+origin,precipitation_status,flight_count,delay_rate
+DFW,No precipitation,194785,0.22932977385322278
+DFW,Precipitation,13709,0.3499161135020789
+JFK,No precipitation,86600,0.22406466512702078
+JFK,Precipitation,12395,0.30883420734167005
+SEA,No precipitation,112194,0.1765691569959178
+SEA,Precipitation,20932,0.17489967513854385
